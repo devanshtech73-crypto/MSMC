@@ -746,7 +746,7 @@ def Main():
     print(logo)
     try:
         print(Fore.LIGHTBLACK_EX+"(speed for checking, i recommend 100, give more threads if its slow. if proxyless give at most 5 threads.)")
-        thread = int(input(Fore.LIGHTBLUE_EX+"Threads: "))
+        thread = 100
     except:
         print(Fore.LIGHTRED_EX+"Must be a number.") 
         time.sleep(2)
@@ -784,5 +784,6 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 

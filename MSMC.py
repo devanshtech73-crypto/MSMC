@@ -487,23 +487,25 @@ def authenticate(email, password, tries = 0):
 
 def Load():
     global Combos, fname
-    filename = filedialog.askopenfile(mode='rb', title='Choose a Combo file',filetype=(("txt", "*.txt"), ("All files", "*.txt")))
-    if filename is None:
-        print(Fore.LIGHTRED_EX+"Invalid File.")
-        time.sleep(2)
-        Load()
-    else:
-        fname = os.path.splitext(os.path.basename(filename.name))[0]
-        try:
-            with open(filename.name, 'r+', encoding='utf-8') as e:
-                lines = e.readlines()
-                Combos = list(set(lines))
-                print(Fore.LIGHTBLUE_EX+f"[{str(len(lines) - len(Combos))}] Dupes Removed.")
-                print(Fore.LIGHTBLUE_EX+f"[{len(Combos)}] Combos Loaded.")
-        except:
-            print(Fore.LIGHTRED_EX+"Your file is probably harmed.")
-            time.sleep(2)
-            Load()
+    fname = "combo"
+    if not os.path.exists("combo.txt"):
+        print(Fore.LIGHTRED_EX+"[-] combo.txt not found! Waiting for bot upload...")
+        Combos = []
+        return
+
+    try:
+        with open("combo.txt", 'r', encoding='utf-8', errors='ignore') as e:
+            lines = e.readlines()
+            # Remove empty lines and whitespace
+            lines = [l.strip() for l in lines if ":" in l]
+            Combos = list(set(lines))
+            print(Fore.LIGHTBLUE_EX+f"[{str(len(lines) - len(Combos))}] Dupes Removed.")
+            print(Fore.LIGHTBLUE_EX+f"[{len(Combos)}] Combos Loaded.")
+    except Exception as e:
+        print(Fore.LIGHTRED_EX+f"Error loading file: {e}")
+        Combos = []
+         
+
 
 def Proxys():
     global proxylist
@@ -761,7 +763,7 @@ def Main():
     print(Fore.LIGHTBLUE_EX+"Screen: [1] CUI - [2] Log")
     screen = "2"
     print(Fore.LIGHTBLUE_EX+"Select your combos")
-    Load()
+    pass
     if proxytype != "'4'" and proxytype != "'5'":
         print(Fore.LIGHTBLUE_EX+"Select your proxies")
         Proxys()
@@ -784,6 +786,7 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 
 

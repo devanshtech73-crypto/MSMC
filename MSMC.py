@@ -698,27 +698,12 @@ def get_proxies():
     get_proxies()
 
 def banproxyload():
-    global banproxies
-    proxyfile = filedialog.askopenfile(mode='rb', title='Choose a SOCKS5 Proxy file',filetype=(("txt", "*.txt"), ("All files", "*.txt")))
-    if proxyfile is None:
-        print(Fore.LIGHTRED_EX+"Invalid File.")
-        time.sleep(2)
-        Proxys()
-    else:
-        try:
-            with open(proxyfile.name, 'r+', encoding='utf-8', errors='ignore') as e:
-                ext = e.readlines()
-                for line in ext:
-                    try:
-                        proxyline = line.split()[0].replace('\n', '')
-                        banproxies.append(proxyline)
-                    except: pass
-            print(Fore.LIGHTBLUE_EX+f"Loaded [{len(banproxies)}] lines.")
-            time.sleep(2)
-        except Exception:
-            print(Fore.LIGHTRED_EX+"Your file is probably harmed.")
-            time.sleep(2)
-            banproxyload()
+    global ban_checking_proxies
+    # We skip this for cloud deployment
+    ban_checking_proxies = []
+    print(Fore.YELLOW + "[*] Skipping Ban Checking proxy selection for Cloud.")
+     
+    
 
 def Main():
     global proxytype, screen
@@ -754,7 +739,7 @@ def Main():
         pass
     if config.get('proxylessban') == False and config.get('hypixelban') is True:
         print(Fore.LIGHTBLUE_EX+"Select your SOCKS5 Ban Checking Proxies.")
-        banproxyload()
+        pass
     if proxytype =="'5'":
         print(Fore.LIGHTGREEN_EX+"Scraping Proxies Please Wait.")
         threading.Thread(target=get_proxies).start()
@@ -771,6 +756,7 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 
 

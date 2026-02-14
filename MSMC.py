@@ -759,7 +759,7 @@ def Main():
         time.sleep(2)
         Main()
     print(Fore.LIGHTBLUE_EX+"Screen: [1] CUI - [2] Log")
-    screen = repr(readchar.readkey())
+    screen = "2"
     print(Fore.LIGHTBLUE_EX+"Select your combos")
     Load()
     if proxytype != "'4'" and proxytype != "'5'":
@@ -784,6 +784,7 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 
 

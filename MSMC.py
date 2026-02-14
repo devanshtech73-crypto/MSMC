@@ -752,7 +752,7 @@ def Main():
         time.sleep(2)
         Main()
     print(Fore.LIGHTBLUE_EX+"Proxy Type: [1] Http\s - [2] Socks4 - [3] Socks5 - [4] None - [5] Auto Scraper")
-    proxytype = repr(readchar.readkey())
+    proxytype = "5"
     cleaned = int(proxytype.replace("'", ""))
     if cleaned not in range(1, 6):
         print(Fore.RED+f"Invalid Proxy Type [{cleaned}]")
@@ -784,6 +784,7 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 
 

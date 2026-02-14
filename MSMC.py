@@ -509,26 +509,11 @@ def Load():
 
 def Proxys():
     global proxylist
-    fileNameProxy = filedialog.askopenfile(mode='rb', title='Choose a Proxy file',filetype=(("txt", "*.txt"), ("All files", "*.txt")))
-    if fileNameProxy is None:
-        print(Fore.LIGHTRED_EX+"Invalid File.")
-        time.sleep(2)
-        Proxys()
-    else:
-        try:
-            with open(fileNameProxy.name, 'r+', encoding='utf-8', errors='ignore') as e:
-                ext = e.readlines()
-                for line in ext:
-                    try:
-                        proxyline = line.split()[0].replace('\n', '')
-                        proxylist.append(proxyline)
-                    except: pass
-            print(Fore.LIGHTBLUE_EX+f"Loaded [{len(proxylist)}] lines.")
-            time.sleep(2)
-        except Exception:
-            print(Fore.LIGHTRED_EX+"Your file is probably harmed.")
-            time.sleep(2)
-            Proxys()
+    # Since we use Auto Scraper (Option 5), we just initialize an empty list
+    # The Scraper will fill this up automatically later
+    proxylist = []
+    print(Fore.LIGHTBLUE_EX + "[*] Auto Scraper selected, skipping proxy file load.")
+     
 
 def logscreen():
     global cpm, cpm1
@@ -766,7 +751,7 @@ def Main():
     pass
     if proxytype != "'4'" and proxytype != "'5'":
         print(Fore.LIGHTBLUE_EX+"Select your proxies")
-        Proxys()
+        pass
     if config.get('proxylessban') == False and config.get('hypixelban') is True:
         print(Fore.LIGHTBLUE_EX+"Select your SOCKS5 Ban Checking Proxies.")
         banproxyload()
@@ -786,6 +771,7 @@ def Main():
     finishedscreen()
     input()
 Main()
+
 
 
 
